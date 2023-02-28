@@ -1,0 +1,107 @@
+export const Users = [
+    {
+        id:1,
+        profilePicture:"https://picsum.photos/200",
+        username:"Husain Jafar Zaidi",
+    },
+    {
+        id:2,
+        profilePicture:"https://picsum.photos/202",
+        username:"Dad",
+    },
+    {
+        id:3,
+        profilePicture:"https://picsum.photos/204",
+        username:"Mom",
+    },
+    {
+        id:4,
+        profilePicture:"https://picsum.photos/206",
+        username:"Saba",
+    },
+    {
+        id:5,
+        profilePicture:"https://picsum.photos/208",
+        username:"Hadi",
+    },
+    {
+        id:6,
+        profilePicture:"https://picsum.photos/210",
+        username:"Haider",
+    },
+];
+
+export const Posts = [
+    {
+        id:1,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=1',
+        date:'10 min ago',
+        userId:1,
+        like:20,
+        comment:5,
+    },
+    {
+        id:2,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=2',
+        date:'10 min ago',
+        userId:2,
+        like:30,
+        comment:5,
+    },
+    {
+        id:3,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=3',
+        date:'10 min ago',
+        userId:3,
+        like:40,
+        comment:5,
+    },
+    {
+        id:4,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=4',
+        date:'10 min ago',
+        userId:4,
+        like:60,
+        comment:5,
+    },
+    {
+        id:5,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=5',
+        date:'10 min ago',
+        userId:5,
+        like:200,
+        comment:5,
+    },
+    {
+        id:6,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=6',
+        date:'10 min ago',
+        userId:6,
+        like:120,
+        comment:5,
+    },
+    {
+        id:7,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=7',
+        date:'10 min ago',
+        userId:7,
+        like:203,
+        comment:5,
+    },
+    {
+        id:8,
+        desc:'Love is Blind',
+        photo:'https://picsum.photos/200?random=8',
+        date:'10 min ago',
+        userId:8,
+        like:260,
+        comment:5,
+    }
+];
