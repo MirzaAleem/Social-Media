@@ -3,6 +3,7 @@
 }
 .profileRight{
     flex: 10;
+    margin-top: 50px;
 }
 .profileRightBottom{
     display: flex;

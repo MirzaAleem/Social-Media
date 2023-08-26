@@ -71,3 +71,8 @@
     font-weight: 500;
     cursor: pointer;
 }
+.loginlink{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
