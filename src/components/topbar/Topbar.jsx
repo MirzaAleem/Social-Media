@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./topbar.css"
 
 export default function Topbar() {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
   return (
     <div className="TopbarContainer">
         <div className="TopbarLeft">
@@ -38,7 +39,7 @@ export default function Topbar() {
             </div>
           </div>
           <Link to={'/profile/Aleem'}>
-            <img src="\Assets\me.jpeg" alt="Profile" className="TopbarImg" />
+            <img src={PF + "me.jpeg"} alt="Profile" className="TopbarImg" />
           </Link>
         </div>
     </div>

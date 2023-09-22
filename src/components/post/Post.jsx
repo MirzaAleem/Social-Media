@@ -1,10 +1,11 @@
 import { MoreVert } from "@mui/icons-material"
 import "./post.css"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from 'axios'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'  // or 'en-US'
 import {Link} from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext";
 
 TimeAgo.addDefaultLocale(en)
 
@@ -15,10 +16,16 @@ export default function Post({post}) {
     const [like, setLike] = useState(post.likes.length)
     const [isLiked, setIsLiked] = useState(false)
     const [user, setUser] = useState({})
+    const {user: currentUser} = useContext(AuthContext);
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const likeHandler = () =>{
+    const likeHandler = async () =>{
+        try {
+           await axios.put("/post/" + post._id + "/like", {userId: currentUser._id});
+        } catch (error) {
+            console.log(error);
+        }
         setLike(isLiked ? like-1 : like+1)
         setIsLiked(!isLiked)
     }
@@ -58,8 +65,8 @@ export default function Post({post}) {
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
-                    <img src="../Assets/thumb-up.png" height='30px' alt="Like Icon" onClick={likeHandler} className="LikeIcon" />
-                    <img src="../Assets/heart.png" height='30px' alt="Heart Icon" onClick={likeHandler} className="LikeIcon" />
+                    <img src={PF + "thumb-up.png"} height='30px' alt="Like Icon" onClick={likeHandler} className="LikeIcon" />
+                    <img src={PF + "heart.png"} height='30px' alt="Heart Icon" onClick={likeHandler} className="LikeIcon" />
                     <span className="PostLikeCounter">{like} people like it</span>
                 </div>
                 <div className="postBotttomRight">

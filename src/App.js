@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 
 function Root() {
   const Context = useContext(AuthContext);
-
+  
   return (
     <Suspense fallback={<div>Loading...</div>}>
 
