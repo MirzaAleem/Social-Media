@@ -8,7 +8,7 @@
 }
 .loginWrapper{
     height: 75%; 
-    width: 75%; 
+    width: 90%; 
     display: flex;
 }
 .loginLeft, .loginRight{
@@ -75,4 +75,17 @@
     display: flex;
     justify-content: center;
     text-decoration: none;
+}
+@media screen and (max-width: 600px){
+    .loginWrapper{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .loginDesc{
+        display: none;
+    }
+    .loginLogo{
+        display: flex;
+        justify-content: center;
+    }
 }

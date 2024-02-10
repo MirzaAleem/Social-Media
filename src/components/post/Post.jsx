@@ -5,6 +5,7 @@ import axios from 'axios'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'  // or 'en-US'
 import {Link} from "react-router-dom";
+import {baseUrl} from '../../api_url'
 import { AuthContext } from "../../Context/AuthContext";
 
 TimeAgo.addDefaultLocale(en)
@@ -22,7 +23,7 @@ export default function Post({post}) {
 
     const likeHandler = async () =>{
         try {
-           await axios.put("/post/" + post._id + "/like", {userId: currentUser._id});
+           await axios.put(baseUrl + "/post/" + post._id + "/like", {userId: currentUser._id});
         } catch (error) {
             console.log(error);
         }
@@ -33,7 +34,7 @@ export default function Post({post}) {
     useEffect(() => {
         const fetchUser = async () => {
           try {
-            const res = await axios.get(`/users?userId=${post.userId}`);
+            const res = await axios.get(baseUrl + `/users/${currentUser._id}`);
             setUser(res.data);
           } catch (error) {
             console.error('Error fetching user data:', error);
@@ -42,7 +43,7 @@ export default function Post({post}) {
         };
     
         fetchUser();
-      }, [post.userId]);
+      }, [currentUser._id]);
 
   return (
     <div className="post">
@@ -61,7 +62,7 @@ export default function Post({post}) {
             </div>
             <div className="postCenter">
                 <span className="postText">{post.desc}</span>
-                <img src={PF + 'images/' + post.img} alt="Post" className="postImg" />
+                <img src={post.img} alt="Post" className="postImg" />
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">

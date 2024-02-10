@@ -12,6 +12,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    alert("Waking up the Server, please have patience !")
     loginCall({email: email.current.value, password: password.current.value}, dispatch);
   };
 
@@ -20,7 +21,7 @@ export default function Login() {
         <div className="loginWrapper">
             <div className="loginLeft">
             <h1 className="loginLogo">Ayila</h1>
-            <span className="loginDesc">Connect with Heartbroken Shayars and Creative Minds.</span>
+            <span className="loginDesc">Connect with Creative Minds.</span>
             </div>
             <div className="loginRight" onSubmit={handleSubmit}>
                 <form className="loginBox">

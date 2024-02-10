@@ -3,6 +3,7 @@ import './share.css'
 import { useContext, useRef, useState } from 'react'
 import { AuthContext } from "../../Context/AuthContext";
 import axios from 'axios';
+import {baseUrl} from '../../api_url'
 
 export default function Share() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
@@ -12,6 +13,7 @@ export default function Share() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    alert("Posting... Click OK")
     const newPost = {
         userId: user._id,
         desc: desc.current.value,
@@ -20,17 +22,31 @@ export default function Share() {
   if (file) {
     const data = new FormData();
     data.append('file', file);
+    data.append('upload_preset', 'social-media')
+    data.append('cloud_name','dxwnemtgy')
+    data.append('folder','Ayila')
+
     newPost.img = file.name; // Set the file name as the image name in MongoDB
    
     try {
-      await axios.post('/upload', data); 
+      //uploads image on cloudinary
+      await fetch('https://api-ap.cloudinary.com/v1_1/dxwnemtgy/image/upload',{
+        method: 'POST',
+        body: data,
+      })
+      .then(res => res.json())
+      .then((data)=> {
+        console.log(data)
+        newPost.img = data.secure_url // Set the image url in MongoDB
+      })
+      .catch(err => console.log(err))
     } catch (error) {
       console.log(error);
     }
   }  
 
   try {
-    await axios.post('/post', newPost);
+    await axios.post(baseUrl + '/post', newPost);
     window.location.reload();
   } catch (error) {
     console.log(error)
@@ -56,7 +72,7 @@ export default function Share() {
                     <label htmlFor='file' className="shareOption">
                         <PermMedia htmlColor='Tomato' className='shareIcon'/>
                         <span className="shareOptionText">Photo or Video</span>
-                        <input style={{display: "none"}} type="file" id='file' accept='.jpg, .jpeg, .png' onChange={(e)=> setFile(e.target.files[0])}/>
+                        <input style={{display: "none"}} type="file" name='file' id='file' encType="multipart/form-data" accept='.jpg, .jpeg, .png' onChange={(e)=> setFile(e.target.files[0])}/>
                     </label>
                     <div className="shareOption">
                         <Label htmlColor='blueviolet' className='shareIcon'/>
@@ -71,7 +87,7 @@ export default function Share() {
                         <span className="shareOptionText">Feelings</span>
                     </div>                    
                 </div>
-                <button className="shareButton" type='submit'>Share</button>
+                <button className="shareButton" type='submit' >Share</button>
             </form>
         </div>
     </div>
